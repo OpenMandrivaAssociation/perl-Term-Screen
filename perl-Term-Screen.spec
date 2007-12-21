@@ -15,6 +15,7 @@ Source:         http://www.cpan.org/modules/by-module/Term/%{module}-%{version}.
 BuildRequires:  perl-devel
 %endif
 buildarch:      noarch
+buildroot:      %{_tmppath}/%{name}-%{version}
 
 %description
 Term::Screen is a very simple screen positioning module that should
