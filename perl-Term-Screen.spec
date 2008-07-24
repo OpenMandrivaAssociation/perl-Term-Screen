@@ -1,7 +1,7 @@
 %define module Term-Screen
 %define version 1.03
 %define name    perl-%{module}
-%define release %mkrel 4
+%define release %mkrel 6
 
 name:           %{name}
 version:        %{version}
