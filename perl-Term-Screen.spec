@@ -1,21 +1,21 @@
-%define module Term-Screen
-%define version 1.03
-%define name    perl-%{module}
-%define release %mkrel 7
+%define upstream_name    Term-Screen
+%define upstream_version 1.03
 
-name:           %{name}
-version:        %{version}
-release:        %{release}
-summary:        A simple all-Perl Term::Cap based screen positioning module
-license:        Artistic
-group:          Development/Perl
-Url:            http://search.cpan.org/dist/%{module}
-Source:         http://www.cpan.org/modules/by-module/Term/%{module}-%{version}.tar.bz2
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
+Summary:    A simple all-Perl Term::Cap based screen positioning module
+License:    Artistic
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Term/%{upstream_name}-%{upstream_version}.tar.bz2
+
 %if %{mdkversion} < 1010
 BuildRequires:  perl-devel
 %endif
-buildarch:      noarch
-buildroot:      %{_tmppath}/%{name}-%{version}
+BuildArch:      noarch
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 Term::Screen is a very simple screen positioning module that should
@@ -38,7 +38,7 @@ terminals to get an esc character, you have to hit another char after it,
 generally another esc.
 
 %prep
-%setup -q -n %{module}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -59,4 +59,3 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{perl_vendorlib}/Term
 %_mandir/man3/*
-
