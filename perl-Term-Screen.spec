@@ -1,21 +1,18 @@
 %define upstream_name    Term-Screen
 %define upstream_version 1.03
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    A simple all-Perl Term::Cap based screen positioning module
-License:    Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Term/%{upstream_name}-%{upstream_version}.tar.bz2
+Summary:	A simple all-Perl Term::Cap based screen positioning module
+License:	Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Term/%{upstream_name}-%{upstream_version}.tar.bz2
 
-%if %{mdkversion} < 1010
-BuildRequires:  perl-devel
-%endif
-BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildArch:	noarch
 
 %description
 Term::Screen is a very simple screen positioning module that should
@@ -41,21 +38,59 @@ generally another esc.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 # tests seems to be interactive only
-#%make test
+#make test
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %{perl_vendorlib}/Term
-%_mandir/man3/*
+%{_mandir}/man3/*
+
+
+%changelog
+* Tue May 03 2011 Michael Scherer <misc@mandriva.org> 1.30.0-2mdv2011.0
++ Revision: 664910
+- mass rebuild
+
+* Sat Aug 01 2009 JÃ©rÃ´me Quelin <jquelin@mandriva.org> 1.30.0-1mdv2010.0
++ Revision: 405542
+- rebuild using %%perl_convert_version
+
+* Thu Jul 31 2008 Thierry Vignaud <tv@mandriva.org> 1.03-7mdv2009.0
++ Revision: 258509
+- rebuild
+
+* Thu Jul 24 2008 Thierry Vignaud <tv@mandriva.org> 1.03-6mdv2009.0
++ Revision: 246525
+- rebuild
+
+* Fri Dec 21 2007 Olivier Blin <oblin@mandriva.com> 1.03-4mdv2008.1
++ Revision: 136360
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sat Sep 15 2007 Guillaume Rousse <guillomovitch@mandriva.org> 1.03-4mdv2008.0
++ Revision: 86966
+- rebuild
+
+
+* Tue Aug 29 2006 Guillaume Rousse <guillomovitch@mandriva.org> 1.03-3mdv2007.0
+- rewrite spec file
+
+* Fri Apr 28 2006 Nicolas Lécureuil <neoclust@mandriva.org> 1.03-2mdk
+- Fix SPEC according to Perl Policy
+    - Source URL
+    - URL
+- use mkrel
+
+* Sun May 29 2005 Lev Givon <lev@columbia.edu> 1.03-1mdk
+- Adapted cpan2rpm-generated spec for Mandrake.
+
