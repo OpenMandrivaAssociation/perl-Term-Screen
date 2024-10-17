@@ -8,7 +8,7 @@ Release:	5
 Summary:	A simple all-Perl Term::Cap based screen positioning module
 License:	Artistic
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{upstream_name}
+Url:		https://search.cpan.org/dist/%{upstream_name}
 Source0:	http://www.cpan.org/modules/by-module/Term/%{upstream_name}-%{upstream_version}.tar.bz2
 
 BuildRequires:	perl-devel
